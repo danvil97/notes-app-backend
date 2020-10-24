@@ -15,6 +15,7 @@ function getNotes() {
     resolve(notes);
   });
 }
+
 function getNote(id) {
   return new Promise((resolve, reject) => {
     helper
@@ -23,6 +24,7 @@ function getNote(id) {
       .catch((err) => reject(err));
   });
 }
+
 function insertNote(newNote) {
   return new Promise((resolve, reject) => {
     const id = { id: helper.getNewId() };
@@ -32,6 +34,7 @@ function insertNote(newNote) {
     resolve(newNote);
   });
 }
+
 function updateNote(id, newNote) {
   return new Promise((resolve, reject) => {
     helper
@@ -46,6 +49,7 @@ function updateNote(id, newNote) {
       .catch((err) => reject(err));
   });
 }
+
 function deleteNote(id) {
   return new Promise((resolve, reject) => {
     helper
@@ -58,6 +62,7 @@ function deleteNote(id) {
       .catch((err) => reject(err));
   });
 }
+
 module.exports = {
   insertNote,
   getNotes,
