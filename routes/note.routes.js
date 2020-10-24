@@ -3,12 +3,6 @@ const router = express.Router();
 const note = require("../models/note.model");
 const m = require("../helpers/middlewares");
 
-/**
- * @swagger
- * /:
- *    get:
- *      description: This should return all notes
- */
 router.get("/", async (req, res) => {
   await note
     .getNotes()
@@ -22,12 +16,6 @@ router.get("/", async (req, res) => {
     });
 });
 
-/**
- * @swagger
- * /{id}:
- *    get:
- *      description: This should return note with {id}
- */
 router.get("/:id", m.mustBeInteger, async (req, res) => {
   const id = req.params.id;
   await note
@@ -42,12 +30,6 @@ router.get("/:id", m.mustBeInteger, async (req, res) => {
     });
 });
 
-/**
- * @swagger
- * /:
- *    post:
- *      description: This should create new note
- */
 router.post("/", m.checkFieldsNote, async (req, res) => {
   await note
     .insertNote(req.body)
@@ -60,12 +42,6 @@ router.post("/", m.checkFieldsNote, async (req, res) => {
     .catch((err) => res.status(500).json({ message: err.message }));
 });
 
-/**
- * @swagger
- * /{id}:
- *    put:
- *      description: This should update note with {id}
- */
 router.put("/:id", m.mustBeInteger, m.checkFieldsNote, async (req, res) => {
   const id = req.params.id;
   await note
@@ -84,12 +60,6 @@ router.put("/:id", m.mustBeInteger, m.checkFieldsNote, async (req, res) => {
     });
 });
 
-/**
- * @swagger
- * /{id}:
- *    delete:
- *      description: This should delete note with {id}
- */
 router.delete("/:id", m.mustBeInteger, async (req, res) => {
   const id = req.params.id;
 
